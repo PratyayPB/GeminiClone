@@ -1,13 +1,13 @@
 /**
- * Gemini API Proxy
- * Calls the backend server which securely handles the Gemini API key
+ * Gemini API Proxy - Netlify Functions
+ * Calls the Netlify serverless function which securely handles the Gemini API key
  */
 
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = '/.netlify/functions/gemini';
 
 async function runPrompt(prompt) {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/gemini`, {
+    const response = await fetch(BACKEND_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ async function runPrompt(prompt) {
     return data.text;
   } catch (error) {
     console.error('Error calling Gemini API:', error.message);
-    throw new Error('Unable to connect to AI service. Please ensure the backend server is running.');
+    throw new Error('Unable to connect to AI service. Please try again later.');
   }
 }
 
