@@ -84,7 +84,7 @@ export const handler = async (event) => {
 
     // Generate content
     const result = await model.generateContent(prompt);
-    const response = await result.response;
+    const response = await result.response();
     const text = response.text();
 
     // Return success response
