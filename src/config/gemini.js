@@ -3,7 +3,7 @@
  * Calls the Netlify serverless function which securely handles the Gemini API key
  */
 
-const BACKEND_URL = '/.netlify/functions/gemini';
+const BACKEND_URL = './netlify/functions/gemini';
 
 async function runPrompt(prompt) {
   try {
