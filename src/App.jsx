@@ -1,22 +1,15 @@
 import React from "react";
-import { useState } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 
 const App = () => {
-  const [toggleTheme, setToggleTheme] = useState(false);
-  {
-    /*AIzaSyDBrQMkEeVA5wkaAdpXIl1xLecxliRf7rE*/
-  }
   return (
-    <div
-      className={`${
-        toggleTheme ? "dark" : "light"
-      } Out flex flex-row font-Outfit text-gray-700`}
-    >
+    <div className={`flex flex-col md:flex-row font-Outfit text-gray-700 min-h-screen bg-white`}>
       <Sidebar />
-      <Main />
+      <div className="flex-1 min-h-screen relative">
+          <Main />
+      </div>
 
       {/*
       <button onClick={() => setToggleTheme(!toggleTheme)}>
