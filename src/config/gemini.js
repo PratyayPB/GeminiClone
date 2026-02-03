@@ -1,9 +1,9 @@
 /**
- * Gemini API Proxy - Netlify Functions
- * Calls the Netlify serverless function which securely handles the Gemini API key
+ * Gemini API Proxy - Vercel Functions
+ * Calls the Vercel serverless function which securely handles the Gemini API key
  */
 
-const BACKEND_URL = './netlify/functions/gemini';
+const BACKEND_URL = '/api/gemini';
 
 async function runPrompt(prompt) {
   try {

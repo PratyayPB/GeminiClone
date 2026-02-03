@@ -17,12 +17,12 @@ dist-ssr
 .env.local
 .env.production
 
-# Backend (not deployed to Netlify)
+# Backend (not deployed to Vercel)
 backend/
 backend-archived/
 
-# Netlify
-.netlify/
+# Vercel
+.vercel/
 
 # Editor directories and files
 .vscode/*
