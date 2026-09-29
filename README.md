@@ -1,49 +1,165 @@
-# ♊ Gemini AI Clone
+# Gemini Clone
 
-A high-performance, responsive AI chat interface built with **React**, **Tailwind CSS**, and the **Google Gemini API**. This project replicates the core features and aesthetic of Google's Gemini, providing a seamless conversational experience.
+**A lightweight, responsive web interface for interacting with Google's Gemini AI.**
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75C2?style=for-the-badge&logo=googlegemini&logoColor=white)
-
-## 🌐 Live Demo
-Check out the application here: [Gemini Clone Live](https://gemini-clone-pq8w.vercel.app/)
+[Live Demo](https://gemini-clone-dun-nine.vercel.app/) · [Report an Issue](https://github.com/PratyayPB/GeminiClone/issues)
 
 ---
 
-## ✨ Features
+## Table of Contents
 
-- **Real-time AI Chat**: Instant interaction with Google's Gemini model.
-- **Contextual Responses**: Uses session-based state management to maintain conversational flow.
-- **Sleek UI**: Minimalist and responsive design inspired by the official Gemini interface.
-- **Prompt History**: View and access previous prompts within the current session.
-- **Secure Backend**: API requests are routed through a backend to protect sensitive API keys.
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React (Hooks, Context API)
-- **Build Tool**: Vite (for lightning-fast development)
-- **Styling**: Tailwind CSS
-- **API**: Google Gemini API
-- **Deployment**: Vercel
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Screenshots / Demo](#screenshots--demo)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
 
 ---
 
-📸 Preview
-<br><br><br>
+## Overview
 
-<img width="1917" height="953" alt="Screenshot 2026-02-04 023759" src="https://github.com/user-attachments/assets/0944925d-b2df-405a-a8ab-0faaccfa6314" /><br>
-<img width="1155" height="668" alt="Screenshot 2026-02-04 023753" src="https://github.com/user-attachments/assets/30529ecb-97ac-4462-8ee6-b8a995ddc3cb" /><br>
-<img width="1917" height="967" alt="Screenshot 2026-02-04 023829" src="https://github.com/user-attachments/assets/e0b9627c-526a-4aa9-9d91-c6df29c97b1d" /><br>
-<img width="1919" height="951" alt="Screenshot 2026-02-04 023812" src="https://github.com/user-attachments/assets/4c5539cc-01e0-47dc-bd77-b5bba7facf26" /><br>
+### What is the project?
+Gemini Clone is a web application that mimics the user interface of Google's Gemini, allowing users to interact with the Gemini AI model seamlessly. It features a responsive chat interface, a clean design using Tailwind CSS, and a secure backend using Vercel Serverless Functions to handle API keys.
 
+### Problem Statement
+Building a front-end interface that directly interacts with third-party AI APIs often exposes sensitive API keys to the client. Additionally, creating a UI that accurately reflects modern chat applications requires careful state management and styling.
 
-
+### Solution
+This project solves these issues by acting as a proxy through a Vercel Serverless Function, keeping the Gemini API key hidden from the client. The frontend is built with React and Tailwind CSS to ensure a responsive, modern, and beautiful user interface.
 
 ---
+
+## Key Features
+
+- **Responsive UI** — A clean, modern chat interface built with Tailwind CSS that works on both desktop and mobile.
+- **Secure API Key Handling** — Uses Vercel Serverless Functions to securely proxy requests to the Google Gemini API, ensuring your API key is never exposed to the client.
+- **Fast Streaming Responses** — Delivers quick and formatted text generation from the Gemini 2.5 Flash model.
+- **State Management** — Efficiently handles conversation history, loading states (with skeleton animations), and recent prompts using React Context API.
+
+---
+
+## Screenshots / Demo
+
+### Application Preview
+
+![Gemini Clone Dashboard](https://ik.imagekit.io/ulycoljug/Portfolio-resources/gemini-clone/Screenshot%202026-09-29%20221944.png?updatedAt=1790700696995)
+![Chat Interface](https://ik.imagekit.io/ulycoljug/Portfolio-resources/gemini-clone/Screenshot%202026-09-29%20221938.png?updatedAt=1790700696930)
+![Mobile View](https://ik.imagekit.io/ulycoljug/Portfolio-resources/gemini-clone/Screenshot%202026-09-29%20221953.png?updatedAt=1790700696936)
+
+**Live Application:** [https://gemini-clone-dun-nine.vercel.app/](https://gemini-clone-dun-nine.vercel.app/)
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- **Library:** React 19
+- **Framework (Build tool):** Vite
+- **Styling:** Tailwind CSS v4
+- **State Management:** React Context API
+
+### Backend / API
+
+- **Infrastructure:** Vercel Serverless Functions (`api/gemini.js`)
+- **AI SDK:** `@google/generative-ai` (Google Gemini 2.5 Flash model)
+
+---
+
+## Architecture
+
+The application is split into a static React frontend and a single serverless proxy endpoint. 
+
+- **Client Layer:** A React application where users enter prompts. The UI updates optimistically with a loading state.
+- **API Layer:** When a prompt is submitted, the frontend makes a POST request to `/api/gemini`.
+- **External Services:** The serverless function `/api/gemini` appends the secure `GEMINI_API_KEY` from environment variables, forwards the request to Google's Gemini API, and returns the response to the client.
+
+---
+
+## Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- A Google Gemini API Key (Get it from [Google AI Studio](https://aistudio.google.com/))
 
+Make sure the following are installed:
+- Node.js (v18+)
+- npm
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/PratyayPB/GeminiClone.git
+cd GeminiClone
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run the Development Server
+
+For local development, you need to use Vercel CLI to simulate serverless functions locally. 
+
+```bash
+npm i -g vercel
+vercel dev
+```
+
+Application will run at:
+```text
+http://localhost:3000
+```
+
+*(Note: Running `npm run dev` directly will start Vite on port 5173, but API calls to `/api/gemini` will fail without the Vercel dev server running)*
+
+---
+
+## Environment Variables
+
+To run this project locally, you will need to add the following environment variables. Create a `.env.local` file in the root directory.
+
+```env
+GEMINI_API_KEY=your_google_gemini_api_key_here
+```
+
+**Never commit real secrets, API keys, credentials, or private tokens to the repository.**
+
+---
+
+## Deployment
+
+The project is configured for seamless deployment on **Vercel**. 
+
+1. Push your code to a GitHub repository.
+2. Import the project in Vercel.
+3. Add the `GEMINI_API_KEY` in the Vercel Environment Variables settings.
+4. Deploy. Vercel will automatically build the Vite app and deploy the `api/gemini.js` as a serverless function.
+
+---
+
+## Contributing
+
+Contributions are welcome. Feel free to open a Pull Request or an Issue.
+
+---
+
+## License
+
+This project is for educational purposes only and is not affiliated with Gemini.
+
+---
+
+## Author
+
+**Pratyay Pratim Borah**
+
+- GitHub: [@PratyayPB](https://github.com/PratyayPB)
+- LinkedIn: [Pratyay Pratim Borah](https://www.linkedin.com/in/pratyaypratimborah/)
+- Portfolio: [https://portfolio-pratyay.vercel.app/](https://portfolio-pratyay.vercel.app/)
